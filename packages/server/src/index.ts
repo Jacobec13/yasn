@@ -1,5 +1,7 @@
 import express from 'express';
 
+import './db/Mongo';
+
 const app = express();
 const port = 3000;
 
