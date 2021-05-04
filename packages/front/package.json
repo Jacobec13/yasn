@@ -5,14 +5,25 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "echo stub"
+    "build": "echo stub",
+    "start": "webpack serve"
   },
   "dependencies": {
-    "@yasn/api": "1.0.0"
+    "@yasn/api": "1.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "typescript": "^4.2.4"
+    "@types/react": "^17.0.4",
+    "@types/react-dom": "^17.0.3",
+    "fork-ts-checker-webpack-plugin": "^6.2.6",
+    "html-webpack-plugin": "^5.3.1",
+    "ts-loader": "^9.1.1",
+    "typescript": "^4.2.4",
+    "webpack": "^5.36.2",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2"
   }
 }
