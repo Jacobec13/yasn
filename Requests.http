@@ -1,0 +1,4 @@
+POST localhost:3000/api/createUser
+Content-Type: application/json
+
+{"login": "test", "name": "My Name Is"}

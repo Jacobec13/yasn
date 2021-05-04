@@ -19,13 +19,13 @@ export class Mongo {
 		this.db = null;
 	}
 
-	static async getInstance(): Promise<Mongo> {
+	static async getInstance() {
 		if (!global.mongoClient) {
 			global.mongoClient = new Mongo();
 			await global.mongoClient.init();
 		}
 
-		return Promise.resolve(global.mongoClient);
+		return global.mongoClient;
 	}
 
 	private async init() {
