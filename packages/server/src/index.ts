@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from "body-parser";
 
 import './db/Mongo';
-import {addUserController} from "./controllers/userController";
+import {addUserController} from "./user/userController";
 import {authMiddleware} from "./auth/AuthMidleware";
 
 const app = express();

@@ -1,7 +1,7 @@
 import {Express} from 'express';
 import {CreateUserDTO} from "@yasn/api";
 import {API_PREFIX} from "../constants";
-import {UserService} from "../user/UserService";
+import {UserService} from "./UserService";
 import {RequestExtended} from "../auth/AuthMidleware";
 
 export const addUserController = (app: Express) => {

@@ -35,5 +35,10 @@ export const authMiddleware = async (req: RequestExtended, res: Response, next: 
 	}
 
 	req.user = await authService.getBaseUserByLogin(login);
-	next();
+
+	if(!req.path.includes('createUser') && !req.user) {
+		res.status(401);
+	} else {
+		next();
+	}
 }
