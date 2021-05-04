@@ -25,7 +25,7 @@ export class Mongo {
 			await global.mongoClient.init();
 		}
 
-		return global.mongoClient;
+		return global.mongoClient.getDb();
 	}
 
 	private async init() {

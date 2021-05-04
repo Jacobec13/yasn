@@ -2,8 +2,6 @@ import express from 'express';
 import bodyParser from "body-parser";
 
 import './db/Mongo';
-import {CreateUserDTO} from "@yasn/api";
-import {createUser} from "./db/UserDAO";
 import {addUserController} from "./controllers/userController";
 
 const app = express();
