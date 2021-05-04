@@ -1,15 +1,20 @@
 {
-  "name": "yasn",
+  "name": "@yasn/server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "lerna bootstrap --hoist"
+    "build": "tsc",
+    "start": "npm run build && node ./dist/index.js"
   },
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "@types/node": "^15.0.1",
+    "@yasn/api": "1.0.0"
+  },
   "devDependencies": {
-    "lerna": "^4.0.0"
+    "typescript": "^4.2.4"
   }
 }
