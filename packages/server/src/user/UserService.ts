@@ -8,7 +8,6 @@ export class UserService {
 		const {login} = createUserDTO;
 
 		const existedUser = await this.userDao.getUserByLogin(login);
-		console.log(existedUser);
 		if(existedUser) {
 			throw new Error("User already exists");
 		}

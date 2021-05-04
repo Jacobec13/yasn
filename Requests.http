@@ -1,4 +1,5 @@
 POST localhost:3000/api/createUser
 Content-Type: application/json
+Authorization: Basic dGVzdDE6MTIzNDU=
 
 {"login": "test2", "name": "My Name Is"}

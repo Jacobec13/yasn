@@ -1,6 +1,9 @@
-export interface User {
+export interface BaseUser {
 	name: string;
 	login: string;
+}
+
+export interface User extends BaseUser {
 	posts: Post[];
 }
 
