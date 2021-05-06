@@ -3,6 +3,7 @@ import {AuthContext, AuthStatus} from "../auth/AuthContext";
 import LogInForm from "../auth/LogInForm/LogInForm";
 
 import {CssBaseline, AppBar, Toolbar, Typography, Container} from '@material-ui/core';
+import UserCard from "./UserCard/UserCard";
 
 export interface MainLayoutProps {
 
@@ -15,7 +16,7 @@ const MainLayout: React.FC<MainLayoutProps> = (props) => {
 		if (status === AuthStatus.UNAUTHORIZED) {
 			return <LogInForm/>;
 		}
-		return null;
+		return <UserCard />;
 	};
 
 	return <React.Fragment>

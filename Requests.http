@@ -2,8 +2,20 @@ POST localhost:3000/api/createUser
 Content-Type: application/json
 Authorization: Basic dGVzdDE6MTIzNDU=
 
-{"login": "test2", "name": "My Name Is"}
+{"login": "test5", "name": "My Name Is"}
 
 ###
 GET localhost:3000/api/auth
 Authorization: Basic dGVzdDE6MTIzNDU=
+
+
+###
+GET localhost:3000/api/getUserPosts?userForView=test1
+Authorization: Basic dGVzdDE6MTIzNDU=
+
+###
+POST localhost:3000/api/createPost
+Authorization: Basic dGVzdDE6MTIzNDU=
+Content-Type: application/json
+
+{"message": "test"}

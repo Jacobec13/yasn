@@ -17,20 +17,37 @@ const getLogin = (token: string): string => {
 	return atob(clean).split(':')[0];
 }
 
+const processAuthError = (req: RequestExtended, res: Response) => {
+	if(!req.path.includes('createUser')) {
+		res.status(401);
+		res.send();
+	}
+}
+
 export const authMiddleware = async (req: RequestExtended, res: Response, next: NextFunction) => {
 	const authService = new AuthService();
 
 	const authToken = req.get('Authorization');
 
 	if(!authToken) {
-		next();
+		if(!req.path.includes('createUser')) {
+			res.status(401);
+			res.send();
+		} else {
+			next();
+		}
 		return;
 	}
 
 	const login = getLogin(authToken);
 
 	if(!login) {
-		next();
+		if(!req.path.includes('createUser')) {
+			res.status(401);
+			res.send();
+		} else {
+			next();
+		}
 		return;
 	}
 

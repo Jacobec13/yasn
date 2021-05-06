@@ -1,18 +1,9 @@
 import {BaseUser, CreateUserDTO, User} from '@yasn/api';
 import {Mongo} from "../db/Mongo";
 import {Collection, SchemaMember} from 'mongodb';
+import {UserCollectionBase} from "../db/UserCollectionBase";
 
-const USER_COLLECTION_NAME = 'user';
-
-export class UserDAO {
-	private userCollection!: Collection<User>;
-
-	private async init() {
-		const db = await Mongo.getInstance();
-
-		this.userCollection = db.collection<User>(USER_COLLECTION_NAME);
-	}
-
+export class UserDAO extends UserCollectionBase {
 	public async createUser(createUserDTO: CreateUserDTO) {
 		await this.init();
 

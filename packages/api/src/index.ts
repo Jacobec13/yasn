@@ -8,10 +8,15 @@ export interface User extends BaseUser {
 }
 
 export interface Post {
+	id: string;
 	message: string;
 }
 
 export interface CreateUserDTO {
 	name: string;
 	login: string;
+}
+
+export interface CreatePostDTO {
+	message: string;
 }
