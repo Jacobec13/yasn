@@ -20,4 +20,14 @@ export const addUserController = (app: Express) => {
 		}
 		res.send(result);
 	});
+
+	app.get(`${API_PREFIX}/auth`, async (req: RequestExtended, res) => {
+		if(req.user) {
+			res.status(200);
+		} else {
+			res.status(401);
+		}
+
+		res.send();
+	})
 }

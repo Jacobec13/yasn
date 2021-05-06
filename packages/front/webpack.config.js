@@ -3,6 +3,11 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
+    devServer: {
+        proxy: {
+            '/api': 'http://localhost:3000'
+        }
+    },
     entry: path.resolve(__dirname, './src/index.tsx'),
     output: {
         path: path.resolve(__dirname, './dist'),
@@ -24,7 +29,9 @@ module.exports = {
         ]
     },
     plugins: [
-        new ForkTsCheckerWebpackPlugin(),
+        new ForkTsCheckerWebpackPlugin({
+            async: false
+        }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './templates/index.html')
         })

@@ -38,6 +38,7 @@ export const authMiddleware = async (req: RequestExtended, res: Response, next: 
 
 	if(!req.path.includes('createUser') && !req.user) {
 		res.status(401);
+		res.send();
 	} else {
 		next();
 	}
