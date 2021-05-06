@@ -19,3 +19,10 @@ Authorization: Basic dGVzdDE6MTIzNDU=
 Content-Type: application/json
 
 {"message": "test"}
+
+###
+POST localhost:3000/api/likePost
+Authorization: Basic dGVzdDE6MTIzNDU=
+Content-Type: application/json
+
+{"messageId": "f153f6a9-3b70-4316-882b-5119aee48882"}

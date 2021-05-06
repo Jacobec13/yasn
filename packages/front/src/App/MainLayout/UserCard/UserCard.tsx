@@ -33,7 +33,9 @@ const UserCard: React.FC<UserCardProps> = (props) => {
 		return null;
 	}
 
-	const renderPosts = () => posts.map((post) => <Grid key={post.id} xs={4} item><PostCard {...post} /></Grid>);
+	const afterLike = () => getUserPosts(currentLogin);
+
+	const renderPosts = () => posts.map((post) => <Grid key={post.id} xs={4} item><PostCard afterLike={afterLike} {...post} /></Grid>);
 
 	const createNewPost = async () => {
 		const newPost: CreatePostDTO = {
@@ -56,6 +58,8 @@ const UserCard: React.FC<UserCardProps> = (props) => {
 	const returnToMyPage = () => {
 		setCurrentLogin(login!);
 	}
+
+
 
 	return <Grid container spacing={2}>
 		<Grid item><Typography variant="h5">Posts of {currentLogin}</Typography></Grid>

@@ -10,6 +10,7 @@ export interface User extends BaseUser {
 export interface Post {
 	id: string;
 	message: string;
+	likes: string[];
 }
 
 export interface CreateUserDTO {
@@ -19,4 +20,8 @@ export interface CreateUserDTO {
 
 export interface CreatePostDTO {
 	message: string;
+}
+
+export interface LikePostDTO {
+	messageId: string;
 }

@@ -2,7 +2,7 @@ import {Express} from "express";
 import {API_PREFIX} from "../constants";
 import {RequestExtended} from "../auth/AuthMidleware";
 import {PostsService} from "./PostsService";
-import {CreatePostDTO} from "@yasn/api";
+import {CreatePostDTO, LikePostDTO} from "@yasn/api";
 
 export const postsController = (app: Express) => {
 	const postsService = new PostsService();
@@ -36,4 +36,21 @@ export const postsController = (app: Express) => {
 		}
 		res.send();
 	});
+
+	app.post(`${API_PREFIX}/likePost`, async (req: RequestExtended<LikePostDTO>, res) => {
+		const {login} = req.user!;
+		const {messageId} = req.body;
+
+		try {
+			await postsService.likeMessage({
+				login, messageId
+			})
+			res.status(201);
+		} catch (e) {
+			res.status(500);
+			console.error(e)
+		}
+
+		res.send();
+	})
 };

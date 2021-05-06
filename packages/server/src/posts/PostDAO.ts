@@ -7,6 +7,11 @@ export interface CreateUserPostParams {
 	message: string;
 }
 
+export interface LikeParams {
+	login: string;
+	messageId: string;
+}
+
 export class PostDAO extends UserCollectionBase {
 	public async getUserPosts(login: string) {
 		await this.init();
@@ -21,7 +26,7 @@ export class PostDAO extends UserCollectionBase {
 			}
 		}).limit(2).toArray();
 
-		if(postsCollections.length === 0 || postsCollections.length > 1) {
+		if (postsCollections.length === 0 || postsCollections.length > 1) {
 			throw new Error('Not found or found too much');
 		}
 
@@ -33,7 +38,8 @@ export class PostDAO extends UserCollectionBase {
 
 		const newPost: Post = {
 			message,
-			id: uuid()
+			id: uuid(),
+			likes: []
 		};
 
 		await this.userCollection.updateOne({
@@ -44,6 +50,67 @@ export class PostDAO extends UserCollectionBase {
 			$push: {
 				'posts': newPost
 			}
-		})
+		});
+	}
+
+	public async addLoginToLike({login, messageId}: LikeParams) {
+		await this.init();
+
+		await this.userCollection.updateOne({
+			posts: {
+				$elemMatch: {
+					id: {
+						$eq: messageId
+					}
+				}
+			}
+		}, {
+			$push: {
+				'posts.$.likes': login
+			}
+		});
+	}
+
+	public async removeLoginFromLike({login, messageId}: LikeParams) {
+		await this.init();
+
+		await this.userCollection.updateOne({
+			posts: {
+				$elemMatch: {
+					id: {
+						$eq: messageId
+					}
+				}
+			}
+		}, {
+			$pull: {
+				'posts.$.likes': login
+			}
+		});
+	}
+
+	public async getLikes(messageId: string) {
+		await this.init();
+
+		const users = await this.userCollection.find({
+			posts: {
+				$elemMatch: {
+					id: {
+						$eq: messageId
+					}
+				}
+			}
+		}, {
+			projection: {
+				'posts.$': 1
+			},
+
+		}).limit(2).toArray();
+		console.log(users)
+		if (users.length !== 1 || users[0].posts.length !== 1) {
+			throw new Error('Post not founded');
+		}
+
+		return users[0].posts[0].likes;
 	}
 }
