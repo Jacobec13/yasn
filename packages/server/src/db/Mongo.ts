@@ -30,7 +30,12 @@ export class Mongo {
 
 	private async init() {
 		this.nativeMongoClient = new MongoClient(url);
-		await this.nativeMongoClient.connect();
+		try {
+			await this.nativeMongoClient.connect();
+		} catch (e) {
+			console.error('Failed to connect db', e);
+			throw e;
+		}
 		this.db = this.nativeMongoClient.db(dbName);
 	}
 

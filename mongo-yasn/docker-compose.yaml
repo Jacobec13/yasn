@@ -1,0 +1,5 @@
+services:
+  db:
+    ports:
+      - "27017:27017"
+    image: mongo:6.0

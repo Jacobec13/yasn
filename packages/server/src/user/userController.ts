@@ -16,7 +16,7 @@ export const addUserController = (app: Express) => {
 		}
 		catch (e) {
 			res.status(500);
-			result = e.message;
+			result = (e as Error).message;
 		}
 		res.send(result);
 	});

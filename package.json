@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "lerna bootstrap --hoist",
-    "build": "lerna run build"
+    "build": "lerna run build",
+    "mongo:start": "docker compose -f ./mongo-yasn/docker-compose.yaml -p mongo-yasn up -d",
+    "mongo:stop": "docker compose -f ./mongo-yasn/docker-compose.yaml -p mongo-yasn down"
   },
   "author": "",
   "license": "ISC",
