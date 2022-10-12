@@ -1,10 +1,10 @@
 import express from 'express';
-import bodyParser from "body-parser";
+import bodyParser from 'body-parser';
 
 import './db/Mongo';
-import {addUserController} from "./user/userController";
-import {authMiddleware} from "./auth/AuthMidleware";
-import {postsController} from "./posts/PostsController";
+import { addUserController } from './user/userController';
+import { authMiddleware } from './auth/AuthMidleware';
+import { postsController } from './posts/PostsController';
 
 const app = express();
 const port = 3000;

@@ -1,37 +1,44 @@
-import * as React from "react";
-import {AuthContext, AuthStatus} from "../auth/AuthContext";
-import LogInForm from "../auth/LogInForm/LogInForm";
+import * as React from 'react';
+import {
+  CssBaseline,
+  AppBar,
+  Toolbar,
+  Typography,
+  Container,
+} from '@material-ui/core';
 
-import {CssBaseline, AppBar, Toolbar, Typography, Container} from '@material-ui/core';
-import UserCard from "./UserCard/UserCard";
+import { AuthContext, AuthStatus } from '../auth/AuthContext';
+import LogInForm from '../auth/LogInForm/LogInForm';
 
-export interface MainLayoutProps {
+import UserCard from './UserCard/UserCard';
 
-}
+export interface MainLayoutProps {}
 
-const MainLayout: React.FC<MainLayoutProps> = (props) => {
-	const {status} = React.useContext(AuthContext);
+const MainLayout: React.FC<MainLayoutProps> = () => {
+  const { status } = React.useContext(AuthContext);
 
-	const renderMainForm = () => {
-		if (status === AuthStatus.UNAUTHORIZED) {
-			return <LogInForm/>;
-		}
-		return <UserCard />;
-	};
+  const renderMainForm = () => {
+    if (status === AuthStatus.UNAUTHORIZED) {
+      return <LogInForm />;
+    }
+    return <UserCard />;
+  };
 
-	return <React.Fragment>
-		<CssBaseline/>
-		<AppBar position="relative">
-			<Toolbar><Typography variant="h6">YASN</Typography></Toolbar>
-		</AppBar>
-		<main>
-			<Container>
-				<div>
-					{renderMainForm()}
-				</div>
-			</Container>
-		</main>
-	</React.Fragment>;
+  return (
+    <React.Fragment>
+      <CssBaseline />
+      <AppBar position="relative">
+        <Toolbar>
+          <Typography variant="h6">YASN</Typography>
+        </Toolbar>
+      </AppBar>
+      <main>
+        <Container>
+          <div>{renderMainForm()}</div>
+        </Container>
+      </main>
+    </React.Fragment>
+  );
 };
 
 export default MainLayout;
